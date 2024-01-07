@@ -7,6 +7,7 @@ import { FaHeart } from "react-icons/fa";
 import logo from "../assets/Yellow_and_Green_Modern_Illustration_Tour_and_Travel_Agency_Logo-removebg-preview.png";
 import Header from "../components/Header";
 import { useDarkMode } from "../DarkModeContext";
+import Loader from "../components/Loader";
 
 const Travel = () => {
   const [name, setName] = useState("");
@@ -14,6 +15,7 @@ const Travel = () => {
   const [experience, setExperience] = useState("");
   const [likes, setLikes] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
+  const[loading, setLoading] = useState(true)
 
   const { id } = useParams();
 
@@ -27,6 +29,8 @@ const Travel = () => {
         setPlace(response.data.placeVisited);
         setExperience(response.data.travellerExperience);
         setLikes(response.data.likes);
+
+        setLoading(false);
 
         const storedHasLiked = localStorage.getItem(`liked_${id}`);
         setHasLiked(!!storedHasLiked); // Convert to boolean
@@ -77,6 +81,8 @@ const Travel = () => {
     <div className={` ${darkMode && "dark"}`}>
     <div className=" items-center min-h-screen dark:bg-black bg-blue-300 ">
       <Header logo={logo}  />
+      {loading? <Loader /> : 
+      
       <div className="flex flex-col justify-center items-center">
         <div className=" bg-white backdrop-blur-lg bg-opacity-60 text-black dark:text-white text-xl p-8 m-5 rounded-lg shadow-xl xl:w-2/5 md:2/5 dark:bg-[#292929]">
           <h1 className="text-3xl mb-4 text-blue-800 font-extrabold">
@@ -119,6 +125,7 @@ const Travel = () => {
           <Comments />
         </div>
       </div>
+      }
     </div>
     </div>
     </>

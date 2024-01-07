@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import logo from "../assets/Yellow_and_Green_Modern_Illustration_Tour_and_Travel_Agency_Logo-removebg-preview.png";
 import Header from "../components/Header";
 import { useDarkMode } from "../DarkModeContext";
+import Loader from "../components/Loader";
 
 const AddComment = () => {
   const [commenterName, setCommenterName] = useState("");
   const [commenterText, setCommenterText] = useState("");
 
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const {id} = useParams();
 
   const {darkMode} = useDarkMode();
+
+  useEffect(()=>{
+    setLoading(false);
+  }, [])
 
   const handleComment = (e) => {
     e.preventDefault();
@@ -37,6 +43,7 @@ const AddComment = () => {
         <h1 className="text-4xl text-center dark:text-white  font-serif text-blue-800 font-extrabold">
           Add Travel Experience
         </h1>
+        {loading? <Loader /> : 
         <div className="flex mt-8 xl:mt-12 border-2 dark:border-none bg-[#bde0fe] border-[#bde0fe] w-[90%] xl:w-[35%] justify-center items-center p-5 rounded-lg shadow-lg dark:text-white dark:bg-[#292929]">
           <form
             onSubmit={handleComment}
@@ -77,6 +84,7 @@ const AddComment = () => {
             </button>
           </form>
         </div>
+        }
       </div>
     </div>
     </div>

@@ -8,7 +8,7 @@ const Comments = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/comment/${id}`)  // Assuming the endpoint returns all comments for a post
+      .get(`https://experavel-api.onrender.com/comment/${id}`)  // Assuming the endpoint returns all comments for a post
       .then((response) => {
         setComments(response.data);
       })

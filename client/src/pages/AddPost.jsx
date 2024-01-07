@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/Yellow_and_Green_Modern_Illustration_Tour_and_Travel_Agency_Logo-removebg-preview.png";
 import { useDarkMode } from "../DarkModeContext";
 import Header from "../components/Header";
+import Loader from "../components/Loader";
 
 const AddPost = () => {
   const [travellerName, setName] = useState("");
@@ -13,6 +14,11 @@ const AddPost = () => {
   const {darkMode} = useDarkMode();
 
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false)
+  },[])
 
   const handleTravel = (e) => {
     e.preventDefault();
@@ -45,6 +51,7 @@ const AddPost = () => {
         <h1 className="text-4xl text-center dark:text-white font-serif text-blue-800 font-extrabold">
           Add Travel Experience
         </h1>
+        {loading? <Loader /> : 
         <div className="flex mt-8 xl:mt-12 border-2 bg-[#bde0fe] border-[#bde0fe] w-[90%] xl:w-[35%] justify-center items-center p-5 rounded-lg shadow-lg dark:bg-[#292929] dark:border-none mb-10">
           <form
             onSubmit={handleTravel}
@@ -98,6 +105,7 @@ const AddPost = () => {
             </button>
           </form>
         </div>
+        }
       </div>
     </div>
     </div>

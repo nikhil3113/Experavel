@@ -10,6 +10,7 @@ import Loader from "../components/Loader";
 
 const Home = () => {
   const [travel, setTravel] = useState([]);
+  const[loading, setLoading] = useState(true);
 
   const {darkMode} = useDarkMode();
 
@@ -18,6 +19,7 @@ const Home = () => {
       .get(`https://experavel-api.onrender.com/`)
       .then((response) => {
         setTravel(response.data.data);
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -30,7 +32,8 @@ const Home = () => {
       <div className={` ${darkMode && "dark"}`}>
         <div className=" min-h-screen dark:bg-black bg-blue-300">
           <Header logo={logo}  />
-
+          {loading? <Loader /> : 
+          <>
           <Link to={"/add"} className="text-green-800 dark:text-green-500">
             <div className="flex justify-end items-center mr-5">
               <span className="text-2xl">Add</span>
@@ -48,7 +51,10 @@ const Home = () => {
                 />
               </div>
             ))}
+            
           </div>
+          </>
+          }
         </div>
       </div>
     </>
