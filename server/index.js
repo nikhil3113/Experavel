@@ -14,7 +14,7 @@ dotenv.config();
 app.use(bodyParser.json()); 
 app.use(cors(
     {
-        origin: ['https://experavel.vercel.app/'],
+        origin: ['https://main--moonlit-frangipane-0a5f56.netlify.app/'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials: true
     }
