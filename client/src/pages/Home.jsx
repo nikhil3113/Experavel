@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/`)
+      .get(`https://jovial-smakager-4f86eb.netlify.app/`)
       .then((response) => {
         setTravel(response.data.data);
       })

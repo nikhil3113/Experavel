@@ -12,7 +12,13 @@ const app = express();
 dotenv.config();
 
 app.use(bodyParser.json()); 
-app.use(cors());
+app.use(cors(
+    {
+        origin: ['https://experavel.vercel.app/'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        credentials: true
+    }
+));
 
 mongoose.connect(process.env.MONGO_URL)
         .then(() =>{
