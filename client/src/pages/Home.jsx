@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`https://jovial-smakager-4f86eb.netlify.app/`)
+      .get(`https://experavel.vercel.app/`)
       .then((response) => {
         setTravel(response.data.data);
       })
