@@ -21,7 +21,7 @@ const Travel = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/${id}`)
+      .get(`https://experavel-api.onrender.com/${id}`)
       .then((response) => {
         setName(response.data.travellerName);
         setPlace(response.data.placeVisited);
@@ -42,7 +42,7 @@ const Travel = () => {
     try {
       if (hasLiked) {
         const response = await axios.post(
-          `http://localhost:5000/unlike/${id}`,
+          `https://experavel-api.onrender.com/unlike/${id}`,
           {
             likes,
           }
@@ -55,7 +55,7 @@ const Travel = () => {
 
         console.log("Unliked successfully!");
       } else {
-        const response = await axios.post(`http://localhost:5000/like/${id}`, {
+        const response = await axios.post(`https://experavel-api.onrender.com/like/${id}`, {
           likes,
         });
 

@@ -16,7 +16,7 @@ const AddComment = () => {
 
   const handleComment = (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:5000/comment/${id}`, {
+    axios.post(`https://experavel-api.onrender.com/comment/${id}`, {
         commenterName,
         commenterText
       })

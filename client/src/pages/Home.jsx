@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`https://experavel.vercel.app/`)
+      .get(`https://experavel-api.onrender.com/`)
       .then((response) => {
         setTravel(response.data.data);
       })

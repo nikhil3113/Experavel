@@ -23,7 +23,7 @@ const AddPost = () => {
       return;
     }
 
-    axios.post("http://localhost:5000/", {
+    axios.post("https://experavel-api.onrender.com/", {
       travellerName,
       placeVisited,
       travellerExperience,
