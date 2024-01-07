@@ -12,13 +12,7 @@ const app = express();
 dotenv.config();
 
 app.use(bodyParser.json()); 
-app.use(cors(
-    {
-        origin: ['https://experavel.netlify.app/'],
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        credentials: true
-    }
-));
+app.use(cors());
 
 mongoose.connect(process.env.MONGO_URL)
         .then(() =>{
