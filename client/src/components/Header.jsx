@@ -13,7 +13,7 @@ const Header = ({logo}) => {
   return (
     <>
         <div className="xl:flex md:flex justify-around items-center ">
-            <Link to={'/'}>
+            <Link to={'/home'}>
             <div className="flex relative xl:right-24">
               <img
                 src={logo}

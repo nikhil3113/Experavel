@@ -35,7 +35,7 @@ const AddPost = () => {
       travellerExperience,
       })
       .then(() => {
-        navigate("/");
+        navigate("/home");
       })
       .catch((error) => {
         console.log(error.response.data.message);
