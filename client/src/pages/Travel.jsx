@@ -34,8 +34,6 @@ const Travel = () => {
 
         const storedHasLiked = localStorage.getItem(`liked_${id}`);
         setHasLiked(!!storedHasLiked); // Convert to boolean
-
-        console.log(response.data.data);
       })
       .catch((error) => {
         console.log(error.response.data);

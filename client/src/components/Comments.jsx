@@ -8,7 +8,7 @@ const Comments = () => {
 
   useEffect(() => {
     axios
-      .get(`https://experavel-api.onrender.com/comment/${id}`)  // Assuming the endpoint returns all comments for a post
+      .get(`https://experavel-api.onrender.com/comment/${id}`)  
       .then((response) => {
         setComments(response.data);
       })

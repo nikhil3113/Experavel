@@ -24,7 +24,7 @@ const Landing = () => {
               ✈️🗺️
             </p>
             <Link to={"/home"}>
-              <button className="mt-5 dark:bg-blue-300 bg-[#292929] text-white">
+              <button className="mt-5 bg-blue-500 dark:bg-[#292929] text-white">
                 Explore
               </button>
             </Link>
@@ -91,7 +91,7 @@ const Landing = () => {
             </ul>
             </div>
 
-            <footer className="mt-10 text-xl flex flex-col justify-center items-center">
+            <footer className="mt-10 text-xl flex flex-col justify-center items-center font-bold">
               <div>&#169;Nikhil chavan</div>
 
               <div className="flex justify-evenly items-center mt-5 mb-10 ">
@@ -100,14 +100,14 @@ const Landing = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <RiContactsLine className="text-3xl text-white cursor-pointer mr-5" />
+                  <RiContactsLine className="text-3xl dark:text-white text-black cursor-pointer mr-5" />
                 </a>
                 <a
                   href="https://github.com/nikhil3113"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <FaGithub className="text-3xl text-white cursor-pointer" />
+                  <FaGithub className="text-3xl dark:text-white text-black cursor-pointer" />
                 </a>
               </div>
             </footer>
