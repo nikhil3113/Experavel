@@ -12,7 +12,7 @@ const Landing = () => {
   return (
     <>
       <div className={`${darkMode && "dark"}`}>
-        <div className="min-h-screen bg-blue-300 dark:bg-[#292929] dark:text-white text-[#292929] ">
+        <div className="min-h-screen bg-blue-300 dark:bg-black dark:text-white text-[#292929] ">
           <Header logo={logo} />
 
           <div className="flex flex-col  justify-center items-center  my-10 xl:mt-0 md:mt-0 px-5 xl:p-0 md:p-0">
@@ -30,7 +30,7 @@ const Landing = () => {
             </Link>
           </div>
 
-          <div className="flex flex-col mt-20  justify-center items-center">
+          <div className="flex flex-col mt-20  justify-center items-center dark:bg-[#292929] py-3 shadow-lg rounded-lg mx-3 bg-blue-200 xl:dark:bg-transparent md:dark:bg-transparent xl:bg-transparent md:bg-transparent xl:shadow-none md:shadow-none">
             <p className="text-3xl mb-5 font-bold">📌 Key Features</p>
             <ul className="px-5 xl:w-2/5 text-[20px]">
               <li className="mb-2">
@@ -50,8 +50,8 @@ const Landing = () => {
               </li>
             </ul>
           </div>
-
-          <div className="flex flex-col mt-20 justify-center items-center">
+          
+          <div className="flex flex-col mt-20 justify-center items-center dark:bg-[#292929] py-3 shadow-lg rounded-lg mx-3 bg-blue-200 xl:dark:bg-transparent md:dark:bg-transparent xl:bg-transparent md:bg-transparent xl:shadow-none md:shadow-none">
             <p className="text-3xl mb-5 font-bold">❓How it works</p>
             <ol className="px-5 xl:w-2/5 list-disc  text-[20px]">
               <li className="mb-3">
@@ -69,7 +69,7 @@ const Landing = () => {
             </ol>
           </div>
 
-          <div className="flex flex-col mt-20  justify-center items-center">
+          <div className="flex flex-col mt-20  justify-center items-center bg-blue-200 dark:bg-[#292929] py-3 shadow-lg rounded-lg mx-3 xl:dark:bg-transparent md:dark:bg-transparent xl:bg-transparent md:bg-transparent xl:shadow-none md:shadow-none">
             <p className="text-3xl mb-5 font-bold">🛠️ Tech Stack</p>
             <ul className="px-5 xl:w-2/5 text-[20px]">
               <li className="mb-2">
@@ -89,17 +89,18 @@ const Landing = () => {
                 on Render.com .
               </li>
             </ul>
+            </div>
 
-            <footer className="mt-10 text-xl mb-5 flex flex-col">
+            <footer className="mt-10 text-xl flex flex-col justify-center items-center">
               <div>&#169;Nikhil chavan</div>
 
-              <div className="flex justify-evenly items-center mt-5 ">
+              <div className="flex justify-evenly items-center mt-5 mb-10 ">
                 <a
                   href="https://nikhilchavan.tk/"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <RiContactsLine className="text-3xl text-white cursor-pointer" />
+                  <RiContactsLine className="text-3xl text-white cursor-pointer mr-5" />
                 </a>
                 <a
                   href="https://github.com/nikhil3113"
@@ -110,7 +111,6 @@ const Landing = () => {
                 </a>
               </div>
             </footer>
-          </div>
         </div>
       </div>
     </>
