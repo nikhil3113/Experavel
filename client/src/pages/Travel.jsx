@@ -15,15 +15,15 @@ const Travel = () => {
   const [experience, setExperience] = useState("");
   const [likes, setLikes] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
-  const[loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
 
-  const {darkMode} = useDarkMode();
+  const { darkMode } = useDarkMode();
 
   useEffect(() => {
     axios
-      .get(`https://experavel-api.onrender.com/${id}`)
+      .get(`${import.meta.env.VITE_API_URL}/${id}`)
       .then((response) => {
         setName(response.data.travellerName);
         setPlace(response.data.placeVisited);
@@ -44,7 +44,7 @@ const Travel = () => {
     try {
       if (hasLiked) {
         const response = await axios.post(
-          `https://experavel-api.onrender.com/unlike/${id}`,
+          `${import.meta.env.VITE_API_URL}/unlike/${id}`,
           {
             likes,
           }
@@ -57,9 +57,12 @@ const Travel = () => {
 
         console.log("Unliked successfully!");
       } else {
-        const response = await axios.post(`https://experavel-api.onrender.com/like/${id}`, {
-          likes,
-        });
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URL}/like/${id}`,
+          {
+            likes,
+          }
+        );
 
         setLikes(response.data.likes);
         setHasLiked(true);
@@ -73,61 +76,88 @@ const Travel = () => {
     }
   };
 
-
-  return (
-    <>
-    <div className={` ${darkMode && "dark"}`}>
-    <div className=" items-center min-h-screen dark:bg-black bg-blue-300 ">
-      <Header logo={logo}  />
-      {loading? <Loader /> : 
-      
-      <div className="flex flex-col justify-center items-center">
-        <div className=" bg-white backdrop-blur-lg bg-opacity-60 text-black dark:text-white text-xl p-8 m-5 rounded-lg shadow-xl xl:w-2/5 md:2/5 dark:bg-[#292929]">
-          <h1 className="text-3xl mb-4 text-blue-800 font-extrabold">
-            Travel Experience
-          </h1>
-          <div className="mb-4">
-            <p className="font-bold">Name:</p>
-            <p>{name}</p>
-          </div>
-          <div className="mb-4">
-            <p className="font-bold">Visited:</p>
-            <p>{place}</p>
-          </div>
-          <div className="mb-4">
-            <p className="font-bold">Experience:</p>
-            <p>{experience}</p>
-          </div>
-          <div className="flex">
-            <FaHeart
-              className={`mt-1 mr-1 cursor-pointer ${
-                hasLiked
-                  ? "transition ease-in-out delay-150  scale-110 text-red-500 dark:text-red-500 duration-300"
-                  : "transition ease-out delay-150 text-white dark:text-white"
-              }`}
-              onClick={handleLikes}
-            />
-            <span>{likes}</span>
-          </div>
-        </div>
-        <div className="bg-white backdrop-blur-lg bg-opacity-60 text-black dark:text-white dark:bg-[#292929] text-xl p-8 m-5 rounded-lg shadow-xl xl:w-2/5 md:w-2/5">
-          <div className="flex flex-col xl:flex-row md:flex-row justify-between">
-            <h2 className="text-2xl mb-4 text-blue-800 font-bold dark:text-white">Comments</h2>
-            <Link to={`/comment/${id}`}>
-              <div className="flex text-green-800 dark:text-green-500">
-                <p>Add </p>
-                <MdOutlineAddBox className="text-2xl my-[3px]" />
+ return (
+  <>
+    <div className={`${darkMode && "dark"}`}>
+      <div className="min-h-screen dark:bg-gradient-to-b dark:from-black dark:to-gray-900 bg-gradient-to-b from-blue-300 to-blue-200 pb-10">
+        <Header logo={logo} />
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="flex flex-col justify-center items-center px-4 max-w-7xl mx-auto">
+            {/* Back button */}
+            <div className="self-start mb-4">
+              <Link to="/home" className="flex items-center text-blue-800 dark:text-blue-400 hover:underline transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                </svg>
+                Back to experiences
+              </Link>
+            </div>
+            
+            {/* Main content card */}
+            <div className="bg-white backdrop-blur-lg bg-opacity-80 text-black dark:text-white text-xl p-8 m-5 rounded-2xl shadow-2xl md:w-3/5 w-full dark:bg-gray-800 dark:bg-opacity-80 border border-transparent dark:border-gray-700 transition-all">
+              <div className="flex justify-between items-start">
+                <h1 className="text-3xl mb-6 text-blue-800 dark:text-blue-400 font-extrabold">
+                  Travel Experience
+                </h1>
+                <div className="flex items-center bg-blue-100 dark:bg-gray-700 rounded-full px-3 py-1 mt-1">
+                  <FaHeart
+                    className={`mx-1 cursor-pointer transition-all duration-300 ${
+                      hasLiked
+                        ? "text-red-500 dark:text-red-500 scale-110"
+                        : "text-gray-400 dark:text-gray-400 hover:scale-110"
+                    }`}
+                    onClick={handleLikes}
+                  />
+                  <span className="font-bold ml-1">{likes}</span>
+                </div>
               </div>
-            </Link>
+              
+              <div className="mb-5 bg-blue-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p className="font-bold text-blue-800 dark:text-blue-300 text-base uppercase tracking-wide mb-1">Traveler</p>
+                <p className="text-2xl">{name}</p>
+              </div>
+              
+              <div className="mb-5 bg-blue-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p className="font-bold text-blue-800 dark:text-blue-300 text-base uppercase tracking-wide mb-1">Destination</p>
+                <p className="text-2xl">{place}</p>
+              </div>
+              
+              <div className="bg-blue-50 dark:bg-gray-700 p-4 rounded-lg">
+                <p className="font-bold text-blue-800 dark:text-blue-300 text-base uppercase tracking-wide mb-1">Experience</p>
+                <p className="text-lg leading-relaxed">{experience}</p>
+              </div>
+            </div>
+            
+            {/* Comments section */}
+            <div className="bg-white backdrop-blur-lg bg-opacity-80 text-black dark:text-white dark:bg-gray-800 dark:bg-opacity-80 text-xl p-8 m-5 rounded-2xl shadow-2xl xl:w-2/5 md:w-3/5 w-full border border-transparent dark:border-gray-700 transition-all">
+              <div className="flex flex-col xl:flex-row md:flex-row justify-between items-center mb-6 border-b dark:border-gray-700 pb-4">
+                <h2 className="text-2xl text-blue-800 font-bold dark:text-blue-400 flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                  </svg>
+                  Comments
+                </h2>
+                
+                <Link to={`/comment/${id}`} className="group">
+                  <div className="flex items-center bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800 text-green-800 dark:text-green-400 px-4 py-2 rounded-full transition-all">
+                    <p className="mr-1">Add Comment</p>
+                    <MdOutlineAddBox className="text-2xl group-hover:rotate-90 transition-transform duration-300" />
+                  </div>
+                </Link>
+              </div>
+              
+              <div className="space-y-4 max-h-96 overflow-y-auto pr-2 custom-scrollbar">
+                <Comments />
+              </div>
+            </div>
           </div>
-          <Comments />
-        </div>
+        )}
       </div>
-      }
     </div>
-    </div>
-    </>
-  );
+  </>
+);
 };
 
 export default Travel;
